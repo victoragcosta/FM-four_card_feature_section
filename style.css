@@ -1,0 +1,238 @@
+/*
+
+Table of Contents
+1. Global Variables
+  1.1 Colors
+  1.2 Device Sizes
+2. Typography
+3. Layout
+  3.1 Cards
+  3.2 Footer
+4. Tablet Media Query
+  4.1 Headers
+  4.2 Cards
+5. Desktop Media Query
+  5.1 Body
+  5.2 Cards
+  5.3 Footer
+
+*/
+
+/* 1. Global Variables */
+:root {
+  /* 1.1 Colors */
+  --clr-red: hsl(0, 78%, 62%);
+  --clr-cyan: hsl(180, 62%, 55%);
+  --clr-orange: hsl(34, 97%, 64%);
+  --clr-blue: hsl(212, 86%, 64%);
+  --clr-very-dark-blue: hsl(234, 12%, 34%);
+  --clr-grayish-blue: hsl(229, 6%, 66%);
+  --clr-very-light-gray: hsl(0, 0%, 98%);
+
+  /* 1.2 Device Sizes */
+  --size-mobile: 375px;
+  --size-desktop: 1440px;
+  --size-sm: 480px; /* Smartphones */
+  --size-md: 768px; /* Tablets */
+  --size-lg: 992px; /* Small screen computers */
+  --size-xl: 1200px; /* Big screen computers */
+}
+
+/* 2. Typography */
+:root {
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: var(--clr-grayish-blue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  /* Remove all margins to avoid dealing with defaults */
+  margin: 0;
+}
+
+h1 {
+  color: var(--clr-very-dark-blue);
+  font-weight: 200;
+  font-size: 1.7rem;
+  text-align: center;
+}
+h3 {
+  color: var(--clr-very-dark-blue);
+  margin: 0 0 0.25em;
+}
+h4 {
+  font-weight: 400;
+  font-size: 1.05rem;
+  text-align: center;
+  margin: 1rem auto 3rem;
+  max-width: 35em;
+}
+p {
+  font-weight: 400;
+  margin: 0 0 1.5em;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* 3. Layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 4rem 2rem 5rem;
+}
+
+.spacer {
+  /* Useful for flex layouts */
+  flex: 1;
+}
+
+/* 3.1 Cards */
+.cards-grid {
+  display: grid;
+  gap: 1.5rem;
+
+  max-width: 25em;
+  width: 100%;
+  margin: 0 auto;
+  min-height: min-content;
+}
+
+.card {
+  --size-top-border: 0.2em;
+
+  background-color: white;
+  box-shadow: 0 10px 10px 1px rgba(0, 0, 0, 0.1);
+  border-top: var(--size-top-border) solid black;
+  border-radius: var(--size-top-border);
+  margin: 0 auto;
+  padding: 1.5em;
+  width: 100%;
+  min-height: 12em;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+.card p {
+  font-size: 0.9rem;
+}
+.card img {
+  height: 3em;
+  width: 3em;
+  display: block;
+  align-self: flex-end;
+}
+
+.top-border-cyan {
+  border-top-color: var(--clr-cyan);
+}
+.top-border-red {
+  border-top-color: var(--clr-red);
+}
+.top-border-orange {
+  border-top-color: var(--clr-orange);
+}
+.top-border-blue {
+  border-top-color: var(--clr-blue);
+}
+
+/* 3.2 Footer */
+footer {
+  display: block;
+  margin: 4em auto 0;
+}
+.attribution {
+  font-size: 0.75rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* 4. Tablet Media Query */
+@media (min-width: 768px) {
+  /* If bigger than a smartphone */
+
+  /* 4.1 Header */
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  /* 4.2 Cards */
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    max-width: 55em;
+  }
+}
+
+/* 5. Desktop Media Query */
+@media (min-width: 1200px) {
+  /* If bigger than a tablet */
+
+  /* 5.1 Body */
+  :root {
+    font-size: 17px;
+  }
+  body {
+    position: relative;
+  }
+
+  /* 5.2 Cards */
+  .cards-grid {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+
+    max-width: 85%;
+    margin: 0 auto;
+    height: calc(100vh - 23rem);
+  }
+
+  .card {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .card img {
+    height: 4em;
+    width: 4em;
+  }
+
+  .top-border-red,
+  .top-border-orange {
+    /* Position Team Builder and Karma on the grid */
+    grid-row: span 2;
+  }
+
+  .top-border-cyan,
+  .top-border-blue {
+    /* Position Supervisor and Calculator on the grid */
+    grid-row: 2 / span 2;
+  }
+
+  /* 5.3 Footer */
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .attribution {
+    font-size: 0.9rem;
+  }
+}
